@@ -1,0 +1,151 @@
+# CCNA ITN: Networking Today
+- Network Components
+    - Hosts -> Devices on a network that are assigned a number for communication
+    - Peer-To-Peer -> When a computer serves both as a server and as a client
+        - Less performance
+        - Less secure
+        - Not scalable
+        - Not centralized
+        - Easy to setup
+        - Less cost
+        - Recommended only for simply tasks
+    - End Devices -> The source or the destination of a message
+        - Ex) Laptops, computers    
+    - Intermediary Devices -> Connects end devices to the network
+        - Provides connectivity
+        - Ensures data flows
+            - Retransmits data
+            - Maintain pathways
+            - Notify devices of errors
+            - Direct data onto different paths
+            - Direct data based on priority
+            - Blocks or permits data
+        - Devices:
+            - Wireless Router
+            - LAN Switch
+            - Router
+            - Multilayer Switch
+            - Firewall Appliance
+    - Network Media
+        - Copper -> Electric Signals
+        - Fiber-Optic -> Impulses of light
+        - Wireless -> Frequencies and waves
+- Topologies
+    - Terms:    
+        - Network Interface Card (NIC) -> Physically connects network devices
+        - Physical Port -> An outlet which a media will connect to
+        - Interface -> Ports
+    - Two types of topology diagrams:
+        - Physical -> Displays the actual physical location & objects
+            - Ex) Switch #1 is on Rack #2 on Shelf #3
+        - Logical -> Displays the connections, ports, networks, etc
+            - Such as connections to a cloud service you might not immediately see with a Physical diagram
+- Common Types of Networks
+    - Four most common:
+        1. Small Home Networks -> Connects a few devices and the internet
+        2. Small Office and Home Office Networks (SOHO network) -> Connects an office into a corporate office or centralized location
+        3. Medium-Large Networks -> Used by corporations and schools, many locations with hundreds of hosts
+        4. World-Wide Networks -> The internet, connects hundreds of millions of computers globally
+    - Local Access Network (LAN)
+        - Connects devices in a limited area
+        - Provides high speed bandwidth to devices within the network
+        - Usually administered by an individual or organization
+        - A house, small buildings, or a small campus are all considered a LAN
+    - Wide Area Network (WAN)
+        - Connects two different LANs over *wide* geographic *area*s
+        - Typically provdes slower speeds than LAN
+        - Usually administered by multiple service providers
+    - Intranet -> Private
+        - Data only accessible by the company
+    - Extranet -> Public
+        - Organization B needs organization A's data, organization A provides a way to access those data through an extranet 
+        - Like an API on webservers
+    - The internet is not owned by a single group
+    - Mutliple organizations were developed to maintain the internet
+- Internet Connections
+    - Requires an Internet Service Provider (ISP)
+    - Home users, teleworkers, and small offices
+        - Cable
+            - Typically offered by TV service providers
+            - Transmits data on the same cable as used for TV
+            - High bandwith & availability
+            - Always connected to the internet
+        - Digital Subscriber Lines (DSL)
+            - Runs on telephone lines
+            - High bandwith & availbility
+            - Always connected to the internet
+            - Small offices typically use Asymmetrical DSL, *download* is faster than *upload*
+        - Cellular
+            - Runs on cellphone networks
+            - Can be used anywhere a cellular signal exists
+            - Performance depends on device and cell tower
+        - Satellite
+            - Satellite dishes require clear line of sight to the satellite
+            - Benefits areas where they wouldn't have internet otherwise
+        - Dial-up Telephone
+            - Inexpensive
+            - Uses any phone lines and a modem
+            - Low bandwith
+        - The choice depends on service provider and location
+    - Businesses
+        - Dedicated Leased Line
+            - Are reserved circuits in a service provider's network
+            - Connected geographically seperate locations
+            - Rented by the month or year
+        - Metro Ethernet
+            - Also known as "Ethernet WAN"
+            - Extends LAN into WAN
+        - Business DSL
+            - Many different formats
+            - Symmetric Digital Subscriber Line -> High upload & download
+        - Satellite
+            - Provides connections when wired isn't possible
+    - Traditional Seperate Networks
+        - On older buildings, different devices might be wired to different kinds of networks
+        - Each network ran a different set of standards and thus couldn't communicate with each other
+        - Many services would run on multiple networks
+    - Converged Networks
+        - Today, the different kinds of rules and standards are converged into one
+        - Different services could be transferred across the same network
+        - Many services would run on a single network
+- Reliable Networks
+    - Fault Tolerance
+        - Is able to keep running in an event of a failure
+        - Reliablity in redundancy
+            - To have multiple different paths 
+        - Ex) In the event of a failure in one router, a different router can take over
+    - Scalability
+        - Expands quickly to support new users and apps (w/o degrading performance)
+        - Networks are scalable because the devices use standard protocols
+        - Ex) Adding a whole network can be connected to the internet and performance wouldn't be degraded
+    - Quality of Service (QoS)
+        - Prioritize time-sensitive traffic. "The type of traffic, not the content of the traffic, is what is important."
+        - An important mechanism in managing congestion and ensuring reliable delivery
+        - Services such as VoIP receive higher priority than webpages
+    - Security
+        - Data and services should only provided to those expected
+        - Administrators must address two types of security concerns:
+            - Infrastructure (Physical, make sure no unauthorized personnel gets to the actual hardware)
+            - Information (Logical, unauthorized users aren't able to get into the network)
+        - CIA Triad
+            - Confidentiality -> Only the intended entity can access the data
+            - Integrity -> Data hasn't been altered on transport
+            - Availability -> Data is transported in reasonable time with reliable access to authorized users
+- Network Security
+    - The most common way breaches in a network happen are from human error
+        - Stolen devices
+        - Phishing
+        - Malicious employees
+    - Security should be implemented in multiple layers because no single solution can stop all threats
+    - In homes, network security is typically implemented at end devices and at the point of connection to the internet
+    - Homes:
+        - Antivirus & antispyware applications
+        - Firewalls -> filters and blocks unauthorized access
+    - Larger networks:
+        - Utilize the same as home, but with more
+        - Dedicated firewalls -> More advanced kind of firewalls with more granular control
+        - Access control list (ACL) -> Filters based on IP addresses and applications
+        - Intrusion prevention systems (IPS) -> Identifies fast-spreading threats
+        - Virtual private networks (VPN) -> Provides secure access into the network
+    - Both homes and business network security must secure their data while still allowing for QoS
+
