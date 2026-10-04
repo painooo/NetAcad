@@ -1,0 +1,152 @@
+# CCNA ITN: Basic Switch and End Device Configuration
+- Cisco IOS Access
+    - All end and network devices require an OS
+    - OS, from outside in
+        - Shell -> An interface for the kernel to the user via CLI & GUI
+        - Kernel -> An interface for the hardware to the shell
+        - Hardware -> Physical portion
+    - Graphical User Interface (GUI) -> Drag-And-Drop apps
+    - Command Line Interface (CLI) -> Typed commands
+    - An OS allows users to interact with the device
+    - Console Port
+        - A physical port which provides out-of-band access to a device
+        - Out-of-band -> Access via a dedicated channel used for maintence only
+        - Device is still accessible even w/o a networking service
+        - Requires: terminal emulation software & console cable
+    - Secure SHell (SSH)
+        - An in-band method for establishing a remote (and secure) CLI session
+        - Requires networking services
+    - Telnet
+        - An in-band method for establishing a remote (insecure) CLI session
+        - Requires networking services
+    - AUX port
+        - A physical port which provides out-of-band access to a device remotely over a telephone connect w/ a modem
+        - Does not require a networking service
+        - Similar to console port
+        - Devices like routers use this
+    - Terminal emulation programs (via serial connections over console port or SSH/Telnet):
+        1. PuTTY
+        2. Tera Term
+        3. SecureCRT
+- IOS Navigation
+    - For security reasons Cisco IOS have two command modes
+        1. User EXEC Mode -> Limited capabilities, useful for basic operations, denoted by `>`, "view-only" mode
+         2. Privileged EXEC Mode -> Unlimited capabilities, can do anything, denoted by `#`, can enter config modes
+    - A device can be configured by entering the global config mode
+    - `global access mode` -> denoted by `(config)#`
+        - Line Configuration Mode -> Configure console, SSH, Telnet, and AUX `Switch(config-line)#`
+        - Interface Configuration Mode -> Configure switch ports or router interface `Switch(config-if)#`
+    - CHEATSHEET:
+        - `disable` -> Exit priv. EXEC Mode
+        - `enable` -> Enter priv. EXEC Mode
+        - `configure terminal` -> Enter global config mode
+        - `line *console*` -> Enter line config mode
+        - `interface *interface*`  -> Enter interface config mode
+        - `exit` -> Exits the current mode to the previous
+        - `end` & CTRL-Z -> Exit to priv.
+        - `?` To get current commands available, context dependent help
+- The Command Structure
+    - Terms:
+        - Keyword -> Specific parameter defined in the OS
+        - Argument -> Value or variable defined by the user
+    - `<PROMPT> <CMD> <ARG> <ARG>`
+        - `Switch> ls -la`
+        - Argument convention:
+            - **boldface** -> argument is as shown
+            - *italics* -> supply value
+            - [x] -> optional
+            - {x} -> required
+            - [x {y | z}] -> x is optional, but if supplied then y or z have to be supplied
+    - Commands can be shortened to the minimum # of characters to uniquely identify the command
+    - Hotkeys
+        - TAB -> Tab autocomplete
+        - Backspace -> Erase character left of cursor
+        - Ctrl-D -> Erase character at cursor
+        - Ctrl-K -> Erase character at end of line
+        - Esc D -> Erase all character from cursor to end of line
+        - Ctrl-U, Ctrl-X -> Erase all character from cursor to beginning of line
+        - Ctrl-W -> Erase word left of cursor
+        - Ctrl-A -> Move cursor to beginning of line
+        - Left Arrow, Ctrl-B -> Move cursor one character left
+        - Esc B -> Move cursor back one word left
+        - Esc F -> Move cursor forward one word right
+        - Right Arrow, Ctrl-F -> Move cursor one character to the right
+        - Ctrl-E -> Move cursor to end of line
+        - Up Arrow, Ctrl-P -> Previous command
+        - Down Arrow, Ctrl-N -> Next command (after Ctrl-P)
+        - Ctrl-R, Ctrl-I, Ctrl-L -> ??
+        - Enter -> Next line
+        - Space -> Next screen
+        - Ctrl-C -> When in config, return to priv EXEC. When in setup, return to command prompt
+        - Ctrl-Shift-6 -> Abort
+- Basic Device Configuration
+    - Device name
+        - All devices by default are assigned a factory default name
+        - Name should..
+            - Start with a letter
+            - Contain no spaces
+            - End with a letter or digit
+            - Use letters, digits, and dashes 
+            - <64 characters in length
+        - Organizations may choose naming schemes
+        - Can be configured by
+            - `configure terminal` -> `hostname <hostname>`
+            - Switch back to default by not providing a hostname
+        - Always document devices by location, purpose, and address 
+- Password Guidelines
+    - Guidelines:
+        - 8 characters or more
+        - Combination of upper and lowercase letters, numbers, special characters, and/or numeric sequences
+        - Avoid same passwords
+        - Avoid common words
+        - Passphrases -> words as passwords
+            - Use for passwords you'll commonly type in
+        - Passwords -> random
+            - Use for passwords you'll store in password managers
+    - Go into line config mode -> `password <psw>`
+        - Go into VTY 0-15 -> `line vty 0 15`
+        - `login` -> Enable password authentication
+    - Go to global config mode -> `enable secret <psw>`
+        - For priv. EXEC mode
+        - `enable secret` overrides `enable password` because it encrypts the password
+    - Encrypt Passwords
+        - Run `service password-encryption` -> to encrypt
+        - Run `show running-config` -> to verify they are encrypted
+- Banner Messages
+    - Run `banner motd #<msg>#` -> to set the password
+        - `#` is known as a delimiting character
+- Save Configuration
+    - `show`...
+        - `startup-config` -> shows config for when starting up or shutting down, stored in NVRAM
+        - `running-config` -> shows config for current running instance (lost when powered off), stored in RAM
+    - `copy running-config startup-config` -> preserve running config by copying it into startup
+    - `reload` -> to reload the device, causes device to shutdown briefly
+    - `erase` -> erase contents in NVRAM
+    - Note: Terminal emulation tools like PuTTY allows you to save your config
+- Ports and Addresses
+    - IP Addresses -> Identifies and locates a device
+    - IPv4 -> four decimal numbers with dots between
+        - also known as dotted decimal notation
+    - Subnet masks -> partitions the network
+        - Subnet masks differentiate portions of networks
+        - Ex) 255.255.255.0 which means only the last number is changeable
+    - Gateway -> IP addressed to the router which the host will use to access remote networks
+    - IPv6 -> replacing IPv4
+        - 128 bits in length
+        - Written as a string of hexadecimal values
+        - Total of 32 values
+        - Separated by colons
+        - Not case sensitive
+    - Interfaces/Ports -> Allows users to interact with devices
+        - Each physical interface has specifications
+        - Cisco IOS Layer 2 switches have physical ports which don’t support Layer 3 IP addresses
+        - Switches have one or more switch virtual interfaces (SVI) which allows for remote management via IP because of above
+            - Default: VLAN1
+- Configure IP Addressing
+    - IP Addresses are automatically assigned by DHCP
+    - IP Addresses can also be configured manually
+- Verify Connectivity
+    - `ipconfig`
+    - `show ip interface brief` -> run in priv. EXEC mode to display data about the ip interfaces
+    - `ping <address>` -> ping the other address (:
+
